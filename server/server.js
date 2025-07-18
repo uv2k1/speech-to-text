@@ -6,15 +6,18 @@ const transcriptionRoutes = require('./routes/transcriptionRoutes');
 
 const app = express();
 
-// Connect to DB
-connectDB();
-
-// Middleware
 app.use(cors({
   origin: 'http://localhost:3000',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
+  credentials: true
 }));
+
+// Connect to DB
+connectDB();
+
+// Middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // API Routes
